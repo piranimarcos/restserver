@@ -9,7 +9,7 @@ const usersGet = async (req, res = response) => {
 
   const [users, total] = await Promise.all([
     User.find({ state: true }).skip(Number(init)).limit(Number(limit)),
-    User.countDocuments({ state: true })
+    User.countDocuments({ state: true }),
   ]);
 
   res.json({ total, users });
@@ -47,10 +47,10 @@ const usersPut = async (req, res = response) => {
   res.json({ msg: "Put API", user });
 };
 
-const usersDelete = async(req, res = response) => {
-  const {id} = req.params
+const usersDelete = async (req, res = response) => {
+  const { id } = req.params;
 
-  const user = await User.findByIdAndUpdate(id, {state:false})
+  const user = await User.findByIdAndUpdate(id, { state: false });
 
   res.json({ user });
 };
